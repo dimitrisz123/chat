@@ -22,7 +22,7 @@ class App extends Component {
   componentDidMount() {
     const chatManager = new ChatManager({
       instanceLocator: instanceLocator,
-      userId: "dimitrisz123",
+      userId: "user1",
       tokenProvider: new TokenProvider({
         url: tokenProvider
       })
