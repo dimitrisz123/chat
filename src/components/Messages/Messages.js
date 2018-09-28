@@ -3,7 +3,7 @@ import React from "react";
 class Messages extends React.Component {
 	render() {
 		return (
-			<div className="message-list">
+			<div id="content" className="message-list">
 				{this.props.messages.map((message, index) => {
 					return (
 						<div className="message" key={index}>

@@ -31,12 +31,17 @@ class App extends Component {
     chatManager
       .connect()
       .then(currentUser => {
+        console.log(currentUser);
         this.currentUser = currentUser;
         this.getAllRooms();
       })
       .catch(err => {
         console.log("Error on connection", err);
       });
+  }
+
+  componentDidUpdate() {
+    this.getAllRooms();
   }
 
   subscribeToRoom = roomid => {
