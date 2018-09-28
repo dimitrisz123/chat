@@ -1,0 +1,149 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+body,
+html {
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+
+:root {
+	--main-color: #2a2a2a;
+	--secondary-color: white;
+	--main-text-color: #3e5869;
+	--secondary-text-color: #b0c7d6;
+	--send-message-form: #f5f5f5;
+	--message-list-color: #929292;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.top-row {
+	display: flex;
+	min-height: 85%;
+}
+
+.bottom-row {
+	display: flex;
+	min-height: 15%;
+}
+
+.rooms-list {
+	flex: 0 0 20%;
+	box-sizing: border-box;
+	padding: 10px;
+	background-color: var(--main-color);
+	overflow: auto;
+}
+
+.rooms-list ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.rooms-list li {
+	margin: 10px 0;
+}
+
+.rooms-list .room a {
+	color: var(--secondary-color);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.rooms-list .room a:active {
+	color: var(--message-list-color);
+}
+
+.message {
+	margin: 15px 0;
+}
+
+.message .message-username {
+	font-size: 11px;
+	color: var(--main-color);
+	opacity: 0.9;
+	margin-bottom: 6px;
+}
+
+.message .message-text {
+	background: var(--main-color);
+	color: var(--secondary-color);
+	display: inline;
+	padding: 4px 8px;
+	border-radius: 8px;
+}
+
+.message-list {
+	flex: 1;
+	overflow: auto;
+	padding: 0 1rem;
+	background: var(--message-list-color);
+}
+
+.add-room {
+	flex: 0 0 20%;
+	padding: 0 5px;
+	background: var(--message-list-color);
+	color: var(--main-text-color);
+}
+
+.add-room form {
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.add-room input {
+	height: 100%;
+	width: 100%;
+
+	font-size: 20px;
+	background: var(--message-list-color);
+}
+
+.add-room input::placeholder {
+	color: var(--main-text-color);
+	font-weight: 200;
+}
+
+.add-room input:focus {
+	outline-width: 0;
+}
+
+.add-room input {
+	border: 0;
+}
+
+.input {
+	flex: 1;
+	background: var(--send-message-form);
+	display: flex;
+}
+
+.input input {
+	width: 100%;
+	padding: 15px 10px;
+	margin: 0;
+	border-style: none;
+	background: var(--send-message-form);
+	font-weight: 200;
+
+	font-size: 20px;
+}
+
+.input input:focus {
+	outline-width: 0;
+}
+
+.input input::placeholder {
+	color: var(--main-text-color);
+}
