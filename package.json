@@ -2,7 +2,7 @@
   "name": "chat",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://dimitrisz123.github.io/chat",
+  "homepage": "https://dimitrisz123.github.io/chat",
   "dependencies": {
     "@pusher/chatkit": "^0.7.17",
     "react": "^16.5.2",
