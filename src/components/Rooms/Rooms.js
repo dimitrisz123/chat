@@ -8,13 +8,14 @@ class Rooms extends React.Component {
 					{this.props.rooms.map((room, index) => {
 						return (
 							<li className="room" key={index}>
-								<button
+								<a
 									onClick={() =>
 										this.props.subscribeToRoom(room.id)
 									}
+									href="# "
 								>
 									{room.name}
-								</button>
+								</a>
 							</li>
 						);
 					})}
