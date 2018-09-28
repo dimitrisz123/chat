@@ -2,10 +2,11 @@ import React from "react";
 
 class Rooms extends React.Component {
 	render() {
+		const sortedRooms = [...this.props.rooms].sort((a, b) => a.id - b.id);
 		return (
 			<div className="rooms-list">
 				<ul>
-					{this.props.rooms.map((room, index) => {
+					{sortedRooms.map((room, index) => {
 						return (
 							<li className="room" key={index}>
 								<a

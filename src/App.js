@@ -22,7 +22,7 @@ class App extends Component {
   componentDidMount() {
     const chatManager = new ChatManager({
       instanceLocator: instanceLocator,
-      userId: "user1",
+      userId: "dimitrisz123",
       tokenProvider: new TokenProvider({
         url: tokenProvider
       })
@@ -31,7 +31,6 @@ class App extends Component {
     chatManager
       .connect()
       .then(currentUser => {
-        console.log(currentUser);
         this.currentUser = currentUser;
         this.getAllRooms();
       })
@@ -40,9 +39,9 @@ class App extends Component {
       });
   }
 
-  componentDidUpdate() {
-    this.getAllRooms();
-  }
+  // componentDidUpdate() {
+  //   this.getAllRooms();
+  // }
 
   subscribeToRoom = roomid => {
     this.setState({ messages: [], roomid: roomid });
