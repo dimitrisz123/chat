@@ -23,7 +23,7 @@ class Main extends Component {
 			instanceLocator: instanceLocator,
 			userId: this.props.user.id,
 			tokenProvider: new TokenProvider({
-				url: tokenProvider
+				url: "tokenProvider"
 			})
 		});
 
