@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://dimitrisz123.github.io/chat",
   "dependencies": {
+    "@material-ui/core": "^3.4.0",
     "@pusher/chatkit": "^0.7.17",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

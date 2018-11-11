@@ -1,144 +1,52 @@
 import React, { Component } from "react";
-import { ChatManager, TokenProvider } from "@pusher/chatkit";
-import Addroom from "./components/Addroom/Addroom";
-import Messages from "./components/Messages/Messages";
-import NewMessage from "./components/NewMessage/NewMessage";
-import Rooms from "./components/Rooms/Rooms";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import Main from "./components/Main/Main";
 import "./App.css";
-import { instanceLocator, tokenProvider } from "./initialize";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      messages: [],
-      rooms: [],
-      inputMessage: "",
-      roomName: "",
-      roomid: null
-    };
-  }
+	constructor() {
+		super();
+		this.state = {
+			route: "login",
+			user: ""
+		};
+	}
 
-  componentDidMount() {
-    const chatManager = new ChatManager({
-      instanceLocator: instanceLocator,
-      userId: "user1",
-      tokenProvider: new TokenProvider({
-        url: tokenProvider
-      })
-    });
+	changeRouteHandler = route => {
+		this.setState({ route: route });
+	};
 
-    chatManager
-      .connect()
-      .then(currentUser => {
-        this.currentUser = currentUser;
-        this.getAllRooms();
-      })
-      .catch(err => {
-        console.log("Error on connection", err);
-      });
-  }
+	userHandler = user => {
+		this.setState({ user: user, route: "app" });
+	};
 
-  // componentDidUpdate() {
-  //   this.getAllRooms();
-  // }
+	userHandlerLogin = user => {
+		this.setState({ user: user, route: "app" });
+	};
 
-  subscribeToRoom = roomid => {
-    this.setState({ messages: [], roomid: roomid });
-    this.currentUser
-      .subscribeToRoom({
-        roomId: roomid,
-        hooks: {
-          onNewMessage: message => {
-            this.setState({ messages: [...this.state.messages, message] });
-          }
-        },
-        messageLimit: 10
-      })
-      .catch(err => console.log("something went wrong"));
-  };
+	render() {
+		let page;
+		if (this.state.route === "register") {
+			page = (
+				<Register
+					changeRoute={this.changeRouteHandler}
+					userHandler={this.userHandler}
+				/>
+			);
+		} else if (this.state.route === "login") {
+			page = (
+				<Login
+					userHandlerLogin={this.userHandlerLogin}
+					changeRoute={this.changeRouteHandler}
+				/>
+			);
+		} else if (this.state.route === "app") {
+			page = <Main user={this.state.user} />;
+		}
 
-  getAllRooms = () => {
-    this.currentUser
-      .getJoinableRooms()
-      .then(rooms => {
-        this.setState({ rooms: [...rooms, ...this.currentUser.rooms] });
-      })
-      .catch(err => {
-        console.log(`Error getting joinable rooms: ${err}`);
-      });
-  };
-
-  inputMessage = event => {
-    this.setState({ inputMessage: event.target.value });
-  };
-
-  inputRoom = event => {
-    this.setState({ roomName: event.target.value });
-  };
-
-  createRoom = e => {
-    e.preventDefault();
-    this.currentUser
-      .createRoom({
-        name: this.state.roomName
-      })
-      .then(room => {
-        if (room) {
-          this.setState({ roomName: "" });
-          this.getAllRooms();
-          this.subscribeToRoom(room.id);
-        }
-      })
-      .catch(err => {
-        console.log(`Error creating room ${err}`);
-      });
-  };
-
-  sendMessage = e => {
-    e.preventDefault();
-    this.currentUser
-      .sendMessage({
-        text: this.state.inputMessage,
-        roomId: this.state.roomid
-      })
-
-      .then(messageId => {
-        if (messageId) {
-          this.setState({ inputMessage: "" });
-        }
-      })
-      .catch(err => {
-        console.log(`Error adding message to my room: ${err}`);
-      });
-  };
-
-  render() {
-    return (
-      <div className="app">
-        <div className="top-row">
-          <Rooms
-            subscribeToRoom={this.subscribeToRoom}
-            rooms={this.state.rooms}
-          />
-          <Messages messages={this.state.messages} />
-        </div>
-        <div className="bottom-row">
-          <Addroom
-            createRoom={this.createRoom}
-            inputRoom={this.inputRoom}
-            value={this.state.roomName}
-          />
-          <NewMessage
-            disabled={!this.state.roomid}
-            sendMessage={this.sendMessage}
-            inputMessage={this.inputMessage}
-            value={this.state.inputMessage}
-          />
-        </div>
-      </div>
-    );
-  }
+		return <div>{page}</div>;
+	}
 }
 
 export default App;
