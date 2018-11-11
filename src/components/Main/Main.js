@@ -20,7 +20,7 @@ class Main extends Component {
 
 	componentDidMount() {
 		const chatManager = new ChatManager({
-			instanceLocator: instanceLocator,
+			instanceLocator: "instanceLocator",
 			userId: this.props.user.id,
 			tokenProvider: new TokenProvider({
 				url: "tokenProvider"
