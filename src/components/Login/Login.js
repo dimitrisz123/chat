@@ -12,31 +12,40 @@ const styles = {
 	}
 };
 class Login extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.state = {
-			loginInput: ""
+			UsernameInput: "",
+			PasswordInput: ""
 		};
 	}
 
-	onLoginChangeHandler = event => {
-		this.setState({ loginInput: event.target.value });
+	onUsernameChangeHandler = event => {
+		this.setState({ UsernameInput: event.target.value });
+	};
+
+	onPasswordChangeHandler = event => {
+		this.setState({ PasswordInput: event.target.value });
 	};
 
 	onLoginPressButton = () => {
-		fetch("https://evening-harbor-95971.herokuapp.com/user", {
-			method: "POST", // or 'PUT'
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				id: this.state.loginInput
-			}) // data can be `string` or {object}!
-		})
+		fetch(
+			"http://chat-env-1.4xfwpzwpy8.eu-central-1.elasticbeanstalk.com/login",
+			{
+				method: "POST", // or 'PUT'
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					userid: this.state.UsernameInput,
+					pass: this.state.PasswordInput
+				}) // data can be `string` or {object}!
+			}
+		)
 			.then(res => res.json())
 			.then(response => {
 				if (response.id) {
-					this.props.userHandlerLogin(response);
+					this.props.userHandler(response);
 				}
 			})
 			.catch(error => console.log("User not found"));
@@ -63,11 +72,18 @@ class Login extends Component {
 					>
 						<CardHeader title="Login" />
 						<TextField
-							label="User Id"
+							label="Username"
+							style={{ width: "200px" }}
+							type="text"
+							margin="normal"
+							onChange={this.onUsernameChangeHandler}
+						/>
+						<TextField
+							label="Password"
 							style={{ width: "200px" }}
 							type="password"
 							margin="normal"
-							onChange={this.onLoginChangeHandler}
+							onChange={this.onPasswordChangeHandler}
 						/>
 
 						<Button

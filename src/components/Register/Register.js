@@ -15,28 +15,28 @@ class Register extends Component {
 	constructor() {
 		super();
 		this.state = {
-			nicknameInput: "",
-			useridInput: ""
+			UsernameInput: "",
+			PasswordInput: ""
 		};
 	}
 
-	onNicknameChangeHandler = event => {
-		this.setState({ nicknameInput: event.target.value });
+	onUsernameChangeHandler = event => {
+		this.setState({ UsernameInput: event.target.value });
 	};
 
-	onUseridChangeHandler = event => {
-		this.setState({ useridInput: event.target.value });
+	onPasswordChangeHandler = event => {
+		this.setState({ PasswordInput: event.target.value });
 	};
 
 	onRegisterPressed = () => {
-		fetch("https://evening-harbor-95971.herokuapp.com/create_user", {
+		fetch("http://chat-env-1.4xfwpzwpy8.eu-central-1.elasticbeanstalk.com/register", {
 			method: "POST", // or 'PUT'
 			headers: {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				id: this.state.nicknameInput,
-				name: this.state.useridInput
+				userid: this.state.UsernameInput,
+				pass: this.state.PasswordInput
 			}) // data can be `string` or {object}!
 		})
 			.then(res => res.json())
@@ -69,18 +69,18 @@ class Register extends Component {
 					>
 						<CardHeader title="Register" />
 						<TextField
-							label="Nickname"
+							label="Username"
 							style={{ width: "200px" }}
 							type="text"
 							margin="normal"
-							onChange={this.onNicknameChangeHandler}
+							onChange={this.onUsernameChangeHandler}
 						/>
 						<TextField
-							label="User Id"
+							label="Password"
 							style={{ width: "200px" }}
 							type="password"
 							margin="normal"
-							onChange={this.onUseridChangeHandler}
+							onChange={this.onPasswordChangeHandler}
 						/>
 
 						<Button

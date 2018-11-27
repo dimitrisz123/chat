@@ -21,10 +21,6 @@ class App extends Component {
 		this.setState({ user: user, route: "app" });
 	};
 
-	userHandlerLogin = user => {
-		this.setState({ user: user, route: "app" });
-	};
-
 	render() {
 		let page;
 		if (this.state.route === "register") {
@@ -37,7 +33,7 @@ class App extends Component {
 		} else if (this.state.route === "login") {
 			page = (
 				<Login
-					userHandlerLogin={this.userHandlerLogin}
+					userHandler={this.userHandler}
 					changeRoute={this.changeRouteHandler}
 				/>
 			);
