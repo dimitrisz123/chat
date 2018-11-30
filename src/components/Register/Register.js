@@ -45,7 +45,7 @@ class Register extends Component {
 					this.props.userHandler(response);
 				}
 			})
-			.catch(error => console.log("Register failed"));
+			.catch(error => console.log("Register faile"));
 	};
 
 	render() {
