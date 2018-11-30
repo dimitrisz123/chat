@@ -29,7 +29,7 @@ class Register extends Component {
 	};
 
 	onRegisterPressed = () => {
-		fetch("https://radiant-fortress-75839.herokuapp.com/register", {
+		fetch("https://chatback123.herokuapp.com/register", {
 			method: "POST", // or 'PUT'
 			headers: {
 				"Content-Type": "application/json"

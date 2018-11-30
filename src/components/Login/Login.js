@@ -29,7 +29,7 @@ class Login extends Component {
 	};
 
 	onLoginPressButton = () => {
-		fetch("https://radiant-fortress-75839.herokuapp.com/login", {
+		fetch("https://chatback123.herokuapp.com/login", {
 			method: "POST", // or 'PUT'
 			headers: {
 				"Content-Type": "application/json"
