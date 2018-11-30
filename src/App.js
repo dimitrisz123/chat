@@ -13,6 +13,10 @@ class App extends Component {
 		};
 	}
 
+	componentDidMount() {
+		fetch("https://chatback123.herokuapp.com/");
+	}
+
 	changeRouteHandler = route => {
 		this.setState({ route: route });
 	};
