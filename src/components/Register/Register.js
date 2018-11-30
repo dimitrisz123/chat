@@ -29,7 +29,7 @@ class Register extends Component {
 	};
 
 	onRegisterPressed = () => {
-		fetch("http://chat-env-1.4xfwpzwpy8.eu-central-1.elasticbeanstalk.com/register", {
+		fetch("https://radiant-fortress-75839.herokuapp.com/register", {
 			method: "POST", // or 'PUT'
 			headers: {
 				"Content-Type": "application/json"

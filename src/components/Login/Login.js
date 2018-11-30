@@ -29,19 +29,16 @@ class Login extends Component {
 	};
 
 	onLoginPressButton = () => {
-		fetch(
-			"http://chat-env-1.4xfwpzwpy8.eu-central-1.elasticbeanstalk.com/login",
-			{
-				method: "POST", // or 'PUT'
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({
-					userid: this.state.UsernameInput,
-					pass: this.state.PasswordInput
-				}) // data can be `string` or {object}!
-			}
-		)
+		fetch("https://radiant-fortress-75839.herokuapp.com/login", {
+			method: "POST", // or 'PUT'
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				userid: this.state.UsernameInput,
+				pass: this.state.PasswordInput
+			}) // data can be `string` or {object}!
+		})
 			.then(res => res.json())
 			.then(response => {
 				if (response.id) {
