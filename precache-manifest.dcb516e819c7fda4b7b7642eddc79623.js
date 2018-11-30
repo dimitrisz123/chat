@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/chat/static/js/runtime~main.420fe194.js"
   },
   {
-    "revision": "3b220aecf90e0497d7d1",
-    "url": "/chat/static/js/main.3b220aec.chunk.js"
+    "revision": "c4c1229bc78dc365d4dd",
+    "url": "/chat/static/js/main.c4c1229b.chunk.js"
   },
   {
     "revision": "dd69e01c3c04f0be1ebc",
     "url": "/chat/static/js/1.dd69e01c.chunk.js"
   },
   {
-    "revision": "3b220aecf90e0497d7d1",
+    "revision": "c4c1229bc78dc365d4dd",
     "url": "/chat/static/css/main.8b3e39ba.chunk.css"
   },
   {
-    "revision": "4aab609c13c5a5e5069239de9e22d5f6",
+    "revision": "6f15a5f37f13da92c7be354eef2bb8ea",
     "url": "/chat/index.html"
   }
 ];
