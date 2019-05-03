@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ChatManager, TokenProvider } from "@pusher/chatkit";
+import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import Addroom from "../Addroom/Addroom";
 import Messages from "../Messages/Messages";
 import NewMessage from "../NewMessage/NewMessage";
@@ -30,6 +30,7 @@ class Main extends Component {
 		chatManager
 			.connect()
 			.then(currentUser => {
+				console.log(currentUser)
 				this.currentUser = currentUser;
 				this.getAllRooms();
 			})
