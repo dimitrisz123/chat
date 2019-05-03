@@ -5,12 +5,15 @@ const Messages = props => {
 	return (
 		<div className="message-list">
 			{props.messages.map((message, index) => {
+				console.log(message);
 				return (
 					<div className="message" key={index}>
 						<div className="message-username">
-							{message.senderId.split(".", 1)}
+							{message.senderId}
 						</div>
-						<div className="message-text">{message.text}</div>
+						<div className="message-text">
+							{message.parts[0].payload.content}
+						</div>
 					</div>
 				);
 			})}

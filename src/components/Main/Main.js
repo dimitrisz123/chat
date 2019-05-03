@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
+import { ChatManager, TokenProvider } from "@pusher/chatkit-client";
 import Addroom from "../Addroom/Addroom";
 import Messages from "../Messages/Messages";
 import NewMessage from "../NewMessage/NewMessage";
@@ -30,7 +30,6 @@ class Main extends Component {
 		chatManager
 			.connect()
 			.then(currentUser => {
-				console.log(currentUser)
 				this.currentUser = currentUser;
 				this.getAllRooms();
 			})
@@ -42,10 +41,10 @@ class Main extends Component {
 	subscribeToRoom = roomid => {
 		this.setState({ messages: [], roomid: roomid });
 		this.currentUser
-			.subscribeToRoom({
+			.subscribeToRoomMultipart({
 				roomId: roomid,
 				hooks: {
-					onNewMessage: message => {
+					onMessage: message => {
 						this.setState({
 							messages: [...this.state.messages, message]
 						});
@@ -96,7 +95,7 @@ class Main extends Component {
 	sendMessage = e => {
 		e.preventDefault();
 		this.currentUser
-			.sendMessage({
+			.sendSimpleMessage({
 				text: this.state.inputMessage,
 				roomId: this.state.roomid
 			})
