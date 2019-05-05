@@ -43,6 +43,7 @@ class Login extends Component {
 			.then(response => {
 				if (response.id) {
 					this.props.userHandler(response);
+					this.props.changeRoute("app");
 				}
 			})
 			.catch(error => console.log("User not found"));

@@ -1,15 +1,15 @@
 import React from "react";
 
-const NewMessage = props => {
+const NewMessage = ({ sendMessage, inputMessage, value, disabled }) => {
 	return (
-		<form className="input" onSubmit={props.sendMessage}>
+		<form className="input" onSubmit={sendMessage}>
 			<input
 				placeholder="Enter a message"
 				className="input"
 				type="text"
-				onChange={props.inputMessage}
-				value={props.value}
-				disabled={props.disabled}
+				onChange={inputMessage}
+				value={value}
+				disabled={disabled}
 			/>
 		</form>
 	);

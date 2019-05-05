@@ -4,49 +4,54 @@ import Register from "./components/Register/Register";
 import Main from "./components/Main/Main";
 import "./App.css";
 
-class App extends Component {
-	constructor() {
-		super();
-		this.state = {
-			route: "login",
-			user: ""
-		};
-	}
+import { connect } from "react-redux";
+import { setRoute, setUser } from "./actions";
 
+const mapStateToProps = state => {
+	return {
+		route: state.reducer1.route,
+		user: state.reducer1.user
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		changeRouteHandler: route => dispatch(setRoute(route)),
+		userHandler: user => dispatch(setUser(user))
+	};
+};
+
+class App extends Component {
 	componentDidMount() {
 		fetch("https://chatback123.herokuapp.com/");
 	}
 
-	changeRouteHandler = route => {
-		this.setState({ route: route });
-	};
-
-	userHandler = user => {
-		this.setState({ user: user, route: "app" });
-	};
-
 	render() {
+		const { changeRouteHandler, userHandler, user, route } = this.props;
 		let page;
-		if (this.state.route === "register") {
+		if (route === "register") {
 			page = (
 				<Register
-					changeRoute={this.changeRouteHandler}
-					userHandler={this.userHandler}
+					changeRoute={changeRouteHandler}
+					userHandler={userHandler}
 				/>
 			);
-		} else if (this.state.route === "login") {
+		} else if (route === "login") {
 			page = (
 				<Login
-					userHandler={this.userHandler}
-					changeRoute={this.changeRouteHandler}
+					userHandler={userHandler}
+					changeRoute={changeRouteHandler}
 				/>
 			);
-		} else if (this.state.route === "app") {
-			page = <Main user={this.state.user} />;
+		} else if (route === "app") {
+			page = <Main user={user} />;
 		}
 
 		return <div>{page}</div>;
 	}
 }
 
-export default App;
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(App);
