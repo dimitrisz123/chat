@@ -41,7 +41,6 @@ class Register extends Component {
 		})
 			.then(res => res.json())
 			.then(response => {
-				console.log(response)
 				if (response.id) {
 					this.props.userHandler(response);
 					this.props.changeRoute("app");

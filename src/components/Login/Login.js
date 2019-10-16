@@ -41,6 +41,7 @@ class Login extends Component {
 		})
 			.then(res => res.json())
 			.then(response => {
+				console.log(response, "login");
 				if (response.id) {
 					this.props.userHandler(response);
 					this.props.changeRoute("app");

@@ -54,6 +54,9 @@ class Main extends Component {
 			.then(currentUser => {
 				this.currentUser = currentUser;
 				this.getAllRooms();
+				const token =
+					currentUser.cursorsInstance.tokenProvider.cachedToken;
+				sessionStorage.setItem("JWT", token);
 			})
 			.catch(err => {
 				console.log("Error on connection", err);

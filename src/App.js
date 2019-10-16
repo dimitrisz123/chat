@@ -24,6 +24,22 @@ const mapDispatchToProps = dispatch => {
 class App extends Component {
 	componentDidMount() {
 		fetch("https://chatback123.herokuapp.com/");
+		const JWT = sessionStorage.getItem("JWT");
+		if (JWT) {
+			fetch("https://chatback123.herokuapp.com/user_id_from_JWT", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: JWT
+				}
+			})
+				.then(resp => resp.json())
+				.then(user => {
+					this.props.userHandler(user);
+					this.props.changeRouteHandler("app");
+				})
+				.catch(err => console.log("error JWT"));
+		}
 	}
 
 	render() {
